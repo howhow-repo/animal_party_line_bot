@@ -1,0 +1,1 @@
+from .teddy import Teddy

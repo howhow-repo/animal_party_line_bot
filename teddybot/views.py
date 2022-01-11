@@ -7,6 +7,8 @@ from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent, TextSendMessage
 
+from lib import Teddy
+
 line_bot_api = LineBotApi(settings.TEDDY_LINE_CHANNEL_ACCESS_TOKEN)
 parser = WebhookParser(settings.TEDDY_LINE_CHANNEL_SECRET)
 
@@ -26,9 +28,10 @@ def callback(request):
 
         for event in events:
             if isinstance(event, MessageEvent) and event.message.type == 'text':  # 如果有訊息事件
+                resp_text = Teddy.echo(event.message.text)
                 line_bot_api.reply_message(  # 回復傳入的訊息文字
                     event.reply_token,
-                    TextSendMessage(text=event.message.text)
+                    TextSendMessage(text=resp_text)
                 )
         return HttpResponse()
     else:
