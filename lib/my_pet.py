@@ -4,48 +4,65 @@ from .messagereceiver import MessageReceiver
 
 
 class MyPet(MessageReceiver):
-    favorite_food = []
-    nick_names = []
-    party = ['暖暖趴', '小動物趴']
-
-    food_response = []
-    name_response = []
-    party_response = []
+    food_map = [[], []]
+    name_map = [[], []]
+    party_map = [['暖暖趴', '小動物趴'], []]
+    po_map = [['波', '波波', '啵', '啵啵'], []]
+    bro_map = [['哥比', '葛格'], []]
 
     @classmethod
-    def react(cls, message: str):
+    def reacts(cls, message: str):
         splited_list = cls.split_sentence(message)
         for w in splited_list:
-            if w in cls.favorite_food:
+            if w in cls.food_map[0]:
                 return cls.food_reaction()
-            elif w in cls.nick_names:
+            elif w in cls.name_map[0]:
                 return cls.name_reaction()
-            elif w in cls.party:
+            elif w in cls.party_map[0]:
                 return cls.party_reaction()
+            elif w in cls.po_map[0]:
+                return cls.po_reaction()
+            elif w in cls.bro_map[0]:
+                return cls.bro_reaction()
 
         return None
 
     @classmethod
     def food_reaction(cls):
-        l = len(cls.food_response) - 1
+        l = len(cls.food_map[1]) - 1
         if l < 0:
             return None
         i = randint(0, l)
-        return cls.food_response[i]
+        return cls.food_map[1][i]
 
     @classmethod
     def name_reaction(cls):
-        l = len(cls.name_response) - 1
+        l = len(cls.name_map[1]) - 1
         if l < 0:
             return None
         i = randint(0, l)
-        return cls.name_response[i]
+        return cls.name_map[1][i]
 
     @classmethod
     def party_reaction(cls):
-        print('party')
-        l = len(cls.party_response) - 1
+        l = len(cls.party_map[1]) - 1
         if l < 0:
             return None
         i = randint(0, l)
-        return cls.party_response[i]
+        return cls.party_map[1][i]
+
+    @classmethod
+    def po_reaction(cls):
+        l = len(cls.po_map[1]) - 1
+        if l < 0:
+            return None
+        i = randint(0, l)
+        return cls.po_map[1][i]
+
+    @classmethod
+    def bro_reaction(cls):
+        l = len(cls.bro_map[1]) - 1
+        if l < 0:
+            return None
+        i = randint(0, l)
+        return cls.bro_map[1][i]
