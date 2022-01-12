@@ -1,6 +1,6 @@
 import jieba
 
-from echolinebot.settings import BASE_DIR
+from core.settings import BASE_DIR
 
 jieba.load_userdict((BASE_DIR / 'jieba_dict.txt').name)
 

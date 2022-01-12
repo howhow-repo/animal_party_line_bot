@@ -33,3 +33,7 @@ def callback(request):
         return HttpResponse()
     else:
         return HttpResponseBadRequest()
+
+@csrf_exempt
+def testpage(request):
+    return "MyPet"
