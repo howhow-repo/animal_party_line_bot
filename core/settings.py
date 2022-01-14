@@ -35,7 +35,7 @@ LITTLESEAL_LINE_CHANNEL_SECRET = config('LITTLESEAL_LINE_CHANNEL_SECRET')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mypet.eba-79panehv.us-west-2.elasticbeanstalk.com', '0.0.0.0:8000', '*']
+ALLOWED_HOSTS = ['*', '0.0.0.0:8000']
 
 
 # Application definition

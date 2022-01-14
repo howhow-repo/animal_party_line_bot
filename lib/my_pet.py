@@ -9,6 +9,8 @@ class MyPet(MessageReceiver):
     party_map = [['暖暖趴', '小動物趴'], []]
     po_map = [['波', '波波', '啵', '啵啵'], []]
     bro_map = [['哥比', '葛格'], []]
+    morning_map = [['早安'], []]
+    good_night_map = [['晚安'], []]
 
     @classmethod
     def reacts(cls, message: str):
@@ -66,3 +68,19 @@ class MyPet(MessageReceiver):
             return None
         i = randint(0, l)
         return cls.bro_map[1][i]
+
+    @classmethod
+    def mor_reaction(cls):
+        l = len(cls.morning_map[1]) - 1
+        if l < 0:
+            return None
+        i = randint(0, l)
+        return cls.morning_map[1][i]
+
+    @classmethod
+    def good_night_reaction(cls):
+        l = len(cls.good_night_map[1]) - 1
+        if l < 0:
+            return None
+        i = randint(0, l)
+        return cls.good_night_map[1][i]
