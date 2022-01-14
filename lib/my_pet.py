@@ -26,6 +26,10 @@ class MyPet(MessageReceiver):
                 return cls.po_reaction()
             elif w in cls.bro_map[0]:
                 return cls.bro_reaction()
+            elif w in cls.morning_map[0]:
+                return cls.mor_reaction()
+            elif w in cls.good_night_map[0]:
+                return cls.good_night_reaction()
 
         return None
 
