@@ -20,7 +20,7 @@ class LittleSeal(MyPet):
             '(滾動',
         ])
 
-    party_map = KeyAndAnswers(
+    party_map = MyPet.party_map.update_answers(
         [
             '(彈彈彈~ 🎵🎵~ 歐歐歐歐~ 🎵',
             '(翻滾～ 翻滾～'
