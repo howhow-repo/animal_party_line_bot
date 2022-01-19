@@ -21,7 +21,6 @@ class LittleSeal(MyPet):
         ])
 
     party_map = KeyAndAnswers(
-        MyPet.party_map[0],
         [
             '(彈彈彈~ 🎵🎵~ 歐歐歐歐~ 🎵',
             '(翻滾～ 翻滾～'
