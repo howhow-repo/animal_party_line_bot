@@ -4,7 +4,7 @@ from lib.my_pet import MyPet
 
 class Teddy(MyPet):
     food_map = KeyAndAnswers(
-        ['紅蘿蔔', 'carrot', '胡蘿蔔', '🥕'],
+        ['紅蘿蔔', 'carrot', '胡蘿蔔', '🥕', '🥬', '高麗菜', '萵苣'],
         [
             'PUI !?',
             'PUI! PUI! PUI!',
@@ -45,5 +45,3 @@ class Teddy(MyPet):
     good_night_map = MyPet.good_night_map.update_answers(
         ['姐接晚安！ 葛格晚安！', '小動物幫晚安！', '晚安暖暖趴！', '(擠擠棉被']
     )
-
-    new_ka = KeyAndAnswers(['窩'], ['窩','窩窩','窩窩窩'])

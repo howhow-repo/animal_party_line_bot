@@ -2,7 +2,7 @@ import jieba
 
 from core.settings import BASE_DIR
 
-jieba.load_userdict((BASE_DIR / 'jieba_dict.txt').name)
+jieba.load_userdict('/home/ubuntu/animal_party_line_bot/jieba_dict.txt')
 
 
 class MessageReceiver:
