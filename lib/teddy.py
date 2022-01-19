@@ -8,7 +8,7 @@ class Teddy(MyPet):
         [
             'PUI !?',
             'PUI! PUI! PUI!',
-            '! (嗅嗅'
+            '! (嗅嗅嚼嚼嚼'
         ])
 
     name_map = KeyAndAnswers(
@@ -45,3 +45,5 @@ class Teddy(MyPet):
     good_night_map = MyPet.good_night_map.update_answers(
         ['姐接晚安！ 葛格晚安！', '小動物幫晚安！', '晚安暖暖趴！', '(擠擠棉被']
     )
+
+    new_ka = KeyAndAnswers(['窩'], ['窩','窩窩','窩窩窩'])
