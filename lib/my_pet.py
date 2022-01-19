@@ -17,7 +17,7 @@ class MyPet(MessageReceiver):
     name_map = KeyAndAnswers([], [])
     party_map = KeyAndAnswers(['暖暖趴', '小動物趴'], [])
     po_map = KeyAndAnswers(['波', '波波', '啵', '啵啵'], [])
-    bro_map = KeyAndAnswers(['哥比', '葛格'], [])
+    bro_map = KeyAndAnswers(['哥哥', '哥比', '葛格'], [])
     morning_map = KeyAndAnswers(['早安'], [])
     good_night_map = KeyAndAnswers(['晚安'], [])
 

@@ -4,7 +4,7 @@ from lib.my_pet import MyPet
 
 class Teddy(MyPet):
     food_map = KeyAndAnswers(
-        ['紅蘿蔔', 'carrot', '胡蘿蔔', '🥕', '🥬', '高麗菜', '萵苣'],
+        ['紅蘿蔔', 'carrot', '胡蘿蔔', '🥕', '🥬', '高麗菜', '萵苣', '花椰菜', '🥦'],
         [
             'PUI !?',
             'PUI! PUI! PUI!',
@@ -16,14 +16,12 @@ class Teddy(MyPet):
         [
             'PUI!',
             'PUI! PUI!'
-        ]
-    )
+        ])
     party_map = MyPet.party_map.update_answers(
         [
             '(Dancing~ 🎵🎵  Danceing~ 🎵🎵',
             '(轉轉~ 🎵🎵  跳跳~ 🎵🎵'
-        ]
-    )
+        ])
 
     po_map = MyPet.po_map.update_answers(
         [
@@ -35,8 +33,7 @@ class Teddy(MyPet):
         [
             '葛格葛格葛格葛格！',
             '(蹭蹭蹭蹭蹭'
-        ]
-    )
+        ])
 
     morning_map = MyPet.morning_map.update_answers(
         ['姐接早安！ 葛格早安！', '小動物幫早安！', '早安 PUI! PUI!']
