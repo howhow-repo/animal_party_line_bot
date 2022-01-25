@@ -1,3 +1,9 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import LittleSealStatus
+
+
+class LittleSealStatusAdmin(admin.ModelAdmin):
+    list_display = [field.name for field in LittleSealStatus._meta.fields]
+
+admin.site.register(LittleSealStatus, LittleSealStatusAdmin)

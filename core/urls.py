@@ -14,11 +14,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
+from django.http import HttpResponseRedirect
 from django.urls import path, include
 
+
+def main_page(request):
+    return HttpResponseRedirect("/admin")
+
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('', main_page),
+    path('admin/', admin.site.urls, name='admin'),
     path('echo/', include('echo.urls')),
     path('teddy/', include('teddybot.urls')),
     path('littleseal/', include('littlesealbot.urls')),
 ]
+
