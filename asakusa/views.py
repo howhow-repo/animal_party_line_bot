@@ -10,8 +10,8 @@ from linebot import LineBotApi, WebhookParser
 from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from linebot.models import MessageEvent, TextSendMessage
 
-line_bot_api = LineBotApi(settings.LITTLESEAL_LINE_CHANNEL_ACCESS_TOKEN)
-parser = WebhookParser(settings.LITTLESEAL_LINE_CHANNEL_SECRET)
+line_bot_api = LineBotApi(settings.ASAKUSA_LINE_CHANNEL_ACCESS_TOKEN)
+parser = WebhookParser(settings.ASAKUSA_LINE_CHANNEL_SECRET)
 
 
 def split_sentence(sentence):
