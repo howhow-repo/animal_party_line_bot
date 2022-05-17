@@ -12,6 +12,28 @@ def split_sentence(sentence):
     return seg_list
 
 
+def add_some_phrase(raw_pick):
+    if raw_pick['type'] == "大吉":
+        return "真正的大吉！恭喜你！✧*｡٩(ˊᗜˋ*)و✧*｡"
+    elif raw_pick['type'] == "中吉":
+        return "還不錯吧。(ゝ∀･)"
+    elif raw_pick['type'] == "吉":
+        return "很棒呢！(๑•̀ω•́)"
+    elif raw_pick['type'] == "小吉":
+        return "很普通的小吉，世界和平☮️(ﾉ>ω<)ﾉ"
+    elif raw_pick['type'] == "末吉":
+        return "不錯呢！(,,・ω・,,)"
+    elif raw_pick['type'] == "末小吉":
+        return "勉勉強強啦！(*´∀`)"
+    elif raw_pick['type'] == "凶":
+        return random.choice([
+            '有點糟糕。(つд⊂)',
+            '運氣不是很好呢，怎麼辦？Σ(ﾟдﾟ)',
+            '還不算太糟！(ﾟωﾟ)',
+            '這真的有點糟糕！(☉д⊙)',
+        ])
+
+
 class Asakusa:
     """只要發言中含有 問神 兩字，將會自動抽出結果，回覆完整詩籤；
     只要發言中含有 運勢 兩字，將會自動抽出大吉至凶的結果。"""
@@ -66,5 +88,5 @@ class Asakusa:
 
     @classmethod
     def format_short_to_line(cls, one_sign: dict):
-        text = f"💮<<{one_sign['type']}>>"
+        text = f"💮<<{one_sign['type']}>>" + '\n' + add_some_phrase(one_sign)
         return text
