@@ -25,7 +25,7 @@ def add_some_phrase(raw_pick):
         return "不錯呢！(,,・ω・,,)"
     elif raw_pick['type'] == "末小吉":
         return "勉勉強強啦！(*´∀`)"
-    elif raw_pick['type'] == "凶":
+    else:
         return random.choice([
             '有點糟糕。(つд⊂)',
             '運氣不是很好呢，怎麼辦？Σ(ﾟдﾟ)',
@@ -40,8 +40,9 @@ class Asakusa:
 
     long_ver_keyword = '問神'
     short_ver_keyword = '運勢'
+    quick_pick = ['大吉', '吉', '中吉', '小吉', '末吉', '末小吉', '末凶', '小凶', '半凶', '凶', '大凶']
     with open(f'{os.path.dirname(__file__)}/asakusa.json', 'r') as f:
-        datas = json.load(f)
+        omikuji = json.load(f)
 
     @classmethod
     def react(cls, message):
@@ -55,22 +56,24 @@ class Asakusa:
 
     @classmethod
     def check_if_ask(cls, message):
+        if message == '/help':
+            return 'help'
+
         splited_list = split_sentence(message)
         for word in splited_list:
             if word == cls.long_ver_keyword:
                 return 'long'
             elif word == cls.short_ver_keyword:
                 return 'short'
-            if word == '/help':
-                return 'help'
         return False
 
     @classmethod
     def pickone(cls, msg_ver='long'):
-        raw_pick = random.choice(cls.datas)
         if msg_ver == 'long':
+            raw_pick = random.choice(cls.omikuji)
             return cls.format_long_to_line(raw_pick)
         if msg_ver == 'short':
+            raw_pick = {'type': random.choice(cls.quick_pick)}
             return cls.format_short_to_line(raw_pick)
         return False
 
