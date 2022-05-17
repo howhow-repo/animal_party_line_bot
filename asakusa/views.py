@@ -71,7 +71,7 @@ def callback(request):
 
         for event in events:
             if isinstance(event, MessageEvent) and event.message.type == 'text':  # 如果有訊息事件
-                resp_text = Asakusa.react()
+                resp_text = Asakusa.react(event.message.text)
                 if resp_text is not None:
                     line_bot_api.reply_message(  # 回復傳入的訊息文字
                         event.reply_token,
