@@ -1,4 +1,4 @@
-import json
+import json, os
 import random
 
 import jieba
@@ -21,7 +21,7 @@ def split_sentence(sentence):
 
 class Asakusa:
     keywords = ['問神', '運勢']
-    with open('./asakusa.json', 'r') as f:
+    with open(f'{os.path.dirname(__file__)}/asakusa.json', 'r') as f:
         datas = json.load(f)
 
     @classmethod
