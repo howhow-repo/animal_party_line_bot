@@ -46,9 +46,9 @@ class Asakusa:
 
     @classmethod
     def format_to_line(cls, one_sign: dict):
-        text = f"{one_sign['type']}\n" \
-               f"{one_sign['poem']}\n" \
-               f"{one_sign['explain']}\n" \
+        text = f"💮{one_sign['type']}\n" \
+               f"📜{one_sign['poem']}\n" \
+               f"📝{one_sign['explain']}\n" \
                f"----\n"
         print()
         for k, v in one_sign['result'].items():
