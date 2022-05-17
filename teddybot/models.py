@@ -17,5 +17,6 @@ class TeddyStatus(models.Model):
     last_play_time = models.DateTimeField(default=timezone.now)
     sleepiness = models.PositiveIntegerField(default=0)
     last_sleep_time = models.DateTimeField(default=timezone.now)
+    last_awake_time = models.DateTimeField(default=timezone.now)
     desier = models.CharField(max_length=32, blank=True)
     sentense = models.CharField(max_length=128, blank=True)

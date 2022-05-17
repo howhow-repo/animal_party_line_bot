@@ -28,5 +28,6 @@ urlpatterns = [
     path('echo/', include('echo.urls')),
     path('teddy/', include('teddybot.urls')),
     path('littleseal/', include('littlesealbot.urls')),
+    path('asakusa/', include('asakusa.urls')),
 ]
 

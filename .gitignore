@@ -5,6 +5,8 @@ venv
 .DS_Store
 .idea
 __pycache__/
+playground.py
+
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
