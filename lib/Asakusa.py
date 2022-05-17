@@ -1,5 +1,7 @@
-import json, os
+import json
+import os
 import random
+
 import jieba
 
 
@@ -11,10 +13,9 @@ def split_sentence(sentence):
 
 
 class Asakusa:
-    """
-        只要發言中含有 問神 兩字，將會自動抽出結果，回覆完整詩籤；
-        只要發言中含有 運勢 兩字，將會自動抽出大吉至大凶的結果。
-    """
+    """只要發言中含有 問神 兩字，將會自動抽出結果，回覆完整詩籤；
+    只要發言中含有 運勢 兩字，將會自動抽出大吉至大凶的結果。"""
+
     long_ver_keyword = '問神'
     short_ver_keyword = '運勢'
     with open(f'{os.path.dirname(__file__)}/asakusa.json', 'r') as f:
@@ -38,13 +39,13 @@ class Asakusa:
                 return 'long'
             elif word == cls.short_ver_keyword:
                 return 'short'
-            if word =='/help':
+            if word == '/help':
                 return 'help'
         return False
 
     @classmethod
     def pickone(cls, msg_ver='long'):
-        raw_pick = cls.datas[random.randint(0, 99)]
+        raw_pick = random.choice(cls.datas)
         if msg_ver == 'long':
             return cls.format_long_to_line(raw_pick)
         if msg_ver == 'short':
