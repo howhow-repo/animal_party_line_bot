@@ -4,6 +4,8 @@ import jieba
 
 
 def split_sentence(sentence):
+    if sentence == '/help':
+        return ['/help']
     seg_list = jieba.lcut_for_search(sentence)
     return seg_list
 
@@ -63,5 +65,5 @@ class Asakusa:
 
     @classmethod
     def format_short_to_line(cls, one_sign: dict):
-        text = f"💮<<{one_sign['type']}>>\n"
+        text = f"💮<<{one_sign['type']}>>"
         return text
