@@ -14,7 +14,7 @@ def split_sentence(sentence):
 
 class Asakusa:
     """只要發言中含有 問神 兩字，將會自動抽出結果，回覆完整詩籤；
-    只要發言中含有 運勢 兩字，將會自動抽出大吉至大凶的結果。"""
+    只要發言中含有 運勢 兩字，將會自動抽出大吉至凶的結果。"""
 
     long_ver_keyword = '問神'
     short_ver_keyword = '運勢'
