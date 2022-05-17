@@ -64,15 +64,26 @@ class Asakusa:
             return cls.check_if_dice(message)
 
     @classmethod
+    def check_if_help(cls, message):
+        if message == '/help':
+            return 'help'
+        return False
+
+    @classmethod
     def check_if_dice(cls, message):
         pass
         # TODO
 
     @classmethod
-    def check_if_help(cls, message):
-        if message == '/help':
-            return 'help'
-        return False
+    def do_dice(cls, times, size):
+        results = []
+        for t in range(times):
+            results.append(random.randint(1, size))
+        return results
+
+    @classmethod
+    def format_dice_result(cls, result_list):
+        return f'擲骰: {result_list}={sum(result_list)}'
 
     @classmethod
     def check_if_ask(cls, message):
