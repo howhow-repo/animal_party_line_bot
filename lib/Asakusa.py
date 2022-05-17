@@ -46,7 +46,7 @@ class Asakusa:
 
     @classmethod
     def react(cls, message):
-        msg_ver = cls.check_if_ask(message)
+        msg_ver = cls.check_service(message)
         if msg_ver == 'help':
             return cls.__doc__
         if msg_ver:
@@ -55,10 +55,27 @@ class Asakusa:
             return None
 
     @classmethod
-    def check_if_ask(cls, message):
+    def check_service(cls, message):
+        if cls.check_if_help(message):
+            return cls.check_if_help(message)
+        elif cls.check_if_ask(message):
+            return cls.check_if_ask(message)
+        elif cls.check_if_dice(message):
+            return cls.check_if_dice(message)
+
+    @classmethod
+    def check_if_dice(cls, message):
+        pass
+        # TODO
+
+    @classmethod
+    def check_if_help(cls, message):
         if message == '/help':
             return 'help'
+        return False
 
+    @classmethod
+    def check_if_ask(cls, message):
         splited_list = split_sentence(message)
         for word in splited_list:
             if word == cls.long_ver_keyword:
