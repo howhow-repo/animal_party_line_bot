@@ -72,7 +72,7 @@ class Asakusa:
 
     @classmethod
     def check_if_choose(cls, message):
-        Regex = re.compile(r'choise\[(.*)]')
+        Regex = re.compile(r'choose\[(.*)]')
         match = Regex.match(message)
         if match:
             return match[1]
