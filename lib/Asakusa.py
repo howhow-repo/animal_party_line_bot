@@ -1,13 +1,12 @@
 import json
 import os
 import random
+import re
 
 import jieba
 
 
 def split_sentence(sentence):
-    if sentence == '/help':
-        return ['/help']
     seg_list = jieba.lcut_for_search(sentence)
     return seg_list
 
@@ -49,8 +48,10 @@ class Asakusa:
         msg_ver = cls.check_service(message)
         if msg_ver == 'help':
             return cls.__doc__
-        if msg_ver:
+        elif msg_ver == 'short' or msg_ver == 'long':
             return cls.pickone(msg_ver)
+        elif msg_ver:
+            return cls.do_choose(msg_ver)
         else:
             return None
 
@@ -60,8 +61,8 @@ class Asakusa:
             return cls.check_if_help(message)
         elif cls.check_if_ask(message):
             return cls.check_if_ask(message)
-        elif cls.check_if_dice(message):
-            return cls.check_if_dice(message)
+        elif cls.check_if_choose(message):
+            return cls.check_if_choose(message)
 
     @classmethod
     def check_if_help(cls, message):
@@ -70,16 +71,16 @@ class Asakusa:
         return False
 
     @classmethod
-    def check_if_dice(cls, message):
-        pass
-        # TODO
+    def check_if_choose(cls, message):
+        Regex = re.compile(r'choise\[(.*)]')
+        match = Regex.match(message)
+        if match:
+            return match[1]
+        return False
 
     @classmethod
-    def do_dice(cls, times, size):
-        results = []
-        for t in range(times):
-            results.append(random.randint(1, size))
-        return results
+    def do_choose(cls, choose_str: str):
+        return random.choice(choose_str.split(r','))
 
     @classmethod
     def format_dice_result(cls, result_list):
