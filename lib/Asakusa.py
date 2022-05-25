@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import os
 import random
@@ -34,8 +36,11 @@ def add_some_phrase(raw_pick):
 
 
 class Asakusa:
-    """只要發言中含有 問神 兩字，將會自動抽出結果，回覆完整詩籤；
-    只要發言中含有 運勢 兩字，將會自動抽出大吉至凶的結果。"""
+    """
+    1. 只要發言中含有 問神 兩字，將會自動抽出結果，回覆完整詩籤。
+    2. 只要發言中含有 運勢 兩字，將會自動抽出大吉至凶的結果。
+    3. 使用格式 choice[選項一,選項二,選項三,...] 將隨機抽出一個選項。
+    """
 
     long_ver_keyword = '問神'
     short_ver_keyword = '運勢'
@@ -45,24 +50,29 @@ class Asakusa:
 
     @classmethod
     def react(cls, message):
-        msg_ver = cls.check_service(message)
-        if msg_ver == 'help':
+        service_type, pre_formed_data = cls.check_service(message)
+        if service_type == 'help':
             return cls.__doc__
-        elif msg_ver == 'short' or msg_ver == 'long':
-            return cls.pickone(msg_ver)
-        elif msg_ver:
-            return cls.do_choose(msg_ver)
+        elif service_type == 'ask':
+            return cls.pickone(pre_formed_data)
+        elif service_type == 'choice':
+            return cls.do_choose(pre_formed_data)
+        elif service_type == 'dice':
+            return cls.do_dice(pre_formed_data)
         else:
             return None
 
     @classmethod
-    def check_service(cls, message):
+    def check_service(cls, message) -> tuple[str, str] | tuple[None, None]:
         if cls.check_if_help(message):
-            return cls.check_if_help(message)
+            return "help", ""
         elif cls.check_if_ask(message):
-            return cls.check_if_ask(message)
-        elif cls.check_if_choose(message):
-            return cls.check_if_choose(message)
+            return "ask", cls.check_if_ask(message)
+        elif cls.check_if_choice(message):
+            return "choice", cls.check_if_choice(message)
+        elif cls.check_if_dice(message):
+            return "dice", cls.check_if_dice(message)
+        return None, None
 
     @classmethod
     def check_if_help(cls, message):
@@ -71,8 +81,8 @@ class Asakusa:
         return False
 
     @classmethod
-    def check_if_choose(cls, message):
-        Regex = re.compile(r'choose\[(.*)]')
+    def check_if_choice(cls, message):
+        Regex = re.compile(r'choice\[(.*)]')
         match = Regex.match(message)
         if match:
             return match[1]
@@ -81,6 +91,22 @@ class Asakusa:
     @classmethod
     def do_choose(cls, choose_str: str):
         return random.choice(choose_str.split(r','))
+
+    @classmethod
+    def check_if_dice(cls, message):
+        Regex = re.compile(r'(\d+)d(\d+)')
+        match = Regex.match(message)
+        if match and int(match[1]) <= 10:
+            return match[0]
+        return False
+
+    @classmethod
+    def do_dice(cls, dice_str: str):
+        times, dice_size = dice_str.split('d')
+        results = []
+        for t in range(int(times)):
+            results.append(random.randint(1, int(dice_size)))
+        return cls.format_dice_result(results)
 
     @classmethod
     def format_dice_result(cls, result_list):
